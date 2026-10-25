@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Itachino â€“ Restaurant i Vossevangen</title>
+<style>
+:root{--bg:#faf6f0;--fg:#2a2220;--muted:#6f625c;--card:#fff;--accent:#b8322a;--line:#e6dcd0;--hero:#2a1a17;--herofg:#faf6f0;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#191311;--fg:#f3ebe3;--muted:#b3a59b;--card:#241b18;--accent:#e2574d;--line:#3a2d28;--hero:#0f0a09;--herofg:#f3ebe3}}
+:root[data-theme="dark"]{--bg:#191311;--fg:#f3ebe3;--muted:#b3a59b;--card:#241b18;--accent:#e2574d;--line:#3a2d28;--hero:#0f0a09;--herofg:#f3ebe3}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.6 Georgia,"Times New Roman",serif}
+a{color:var(--accent)}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px}
+header{background:var(--hero);color:var(--herofg);text-align:center;padding:72px 20px 64px}
+header h1{font-size:clamp(44px,10vw,84px);margin:0;letter-spacing:.04em;font-weight:400}
+header p{max-width:520px;margin:16px auto 28px;opacity:.85}
+.btn{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;padding:12px 26px;border-radius:999px;font:600 15px system-ui,sans-serif;margin:4px}
+.btn.alt{background:transparent;border:1px solid currentColor;color:var(--herofg)}
+section{padding:56px 0;border-bottom:1px solid var(--line)}
+h2{font-weight:400;font-size:30px;margin:0 0 20px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;font:14px system-ui,sans-serif}
+.tags span{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:6px 14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+.card h3{margin:0 0 4px;font-size:20px;font-weight:400}
+.card p{margin:0;color:var(--muted);font-size:15px}
+.note{color:var(--muted);font-size:14px;margin-top:16px}
+.cat{font-weight:400;font-size:22px;margin:32px 0 12px;color:var(--accent)}
+.row{display:flex;justify-content:space-between;gap:12px}
+.price{font:600 15px system-ui,sans-serif;white-space:nowrap}
+.al{font:12px system-ui,sans-serif;margin-top:8px!important}
+.gal{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.gal img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:12px;display:block}
+.rating{font-size:44px;line-height:1}
+dl{display:grid;grid-template-columns:auto 1fr;gap:10px 20px;margin:0}
+dt{color:var(--muted)}dd{margin:0}
+footer{padding:32px 20px;text-align:center;color:var(--muted);font-size:14px}
+</style>
+</head>
+<body>
+<header>
+<h1>Itachino</h1>
+<p>Pasta, pizza og varme middagsretter i Vangsgata i Vossevangen.</p>
+<a class="btn" href="tel:+4792920528">Ring 92 92 05 28</a>
+<a class="btn alt" href="#meny">Se menyen</a>
+</header>
+
+<main>
+<section id="om"><div class="wrap">
+<h2>Velkommen</h2>
+<p>Itachino er en restaurant i Vangsgata 12 i Vossevangen. Hos oss kan du spise i restauranten, ta med maten hjem eller fÃ¥ den levert.</p>
+<div class="tags"><span>Servering</span><span>Takeaway</span><span>Levering</span><span>Kvinneeid</span><span>LHBTQ+-vennlig</span></div>
+</div></section>
+
+<section id="meny"><div class="wrap">
+<h2>Meny</h2>
+
+<h3 class="cat">Forretter og salat</h3>
+<div class="grid">
+<div class="card"><div class="row"><h3>Sopaipillas</h3><span class="price">99,-</span></div><p>Two deep fried Chilean pumpkin breads served with pebre.</p><p class="al">Allergener: gluten, milk</p></div>
+<div class="card"><div class="row"><h3>Caesar Salad</h3><span class="price">289,-</span></div><p>Served with chicken or smoked salmon / vegan chicken, bacon, parmesan, romaine lettuce, croutons and caesar dressing.</p><p class="al">Allergener: gluten, milk, egg, sulphites, (fish)</p></div>
+</div>
+
+<h3 class="cat">Pizza</h3>
+<div class="grid">
+<div class="card"><div class="row"><h3>Pizza With Serrano</h3><span class="price">299,-</span></div><p>Pizza with tomato sauce, mozzarella and serrano. Topped with rocket.</p><p class="al">Allergener: gluten, milk</p></div>
+<div class="card"><div class="row"><h3>Vegetarian Pizza</h3><span class="price">249,-</span></div><p>Pizza with tomato sauce, mozzarella, bell pepper, onion, cherry tomatoes, and rocket.</p><p class="al">Allergener: gluten, milk</p></div>
+</div>
+
+<h3 class="cat">Pasta</h3>
+<div class="grid">
+<div class="card"><div class="row"><h3>Tagliatelle Carbonara</h3><span class="price">299,-</span></div><p>Pasta with guanciale, pecorino cheese and parmesan cheese. Served with focaccia.</p><p class="al">Allergener: gluten, milk, eggs</p></div>
+<div class="card"><div class="row"><h3>Spagetti Bolognese</h3><span class="price">279,-</span></div><p>Pasta with tomato sauce with basil, carrot, parmesan cheese, and minced beef. Served with focaccia.</p><p class="al">Allergener: gluten, milk</p></div>
+<div class="card"><div class="row"><h3>Cannelloni</h3><span class="price">295,-</span></div><p>Cannelloni with spinach, ricotta cheese and bechamel and tomato sauce. Served with focaccia and a green salad.</p><p class="al">Allergener: gluten, milk, egg</p></div>
+<div class="card"><div class="row"><h3>Creamy Pasta With Scampi</h3><span class="price">339,-</span></div><p>Pasta with creamy sauce made out of zucchini, chili, garlic, white wine, and scampi. Topped with parmesan cheese.</p><p class="al">Allergener: gluten, milk, shellfish</p></div>
+<div class="card"><div class="row"><h3>Vegetarian Tagliatelle</h3><span class="price">289,-</span></div><p>Tagliatelle with bell pepper, onion, champignon mushroom and tomato sauce. Served with focaccia and a green salad.</p><p class="al">Allergener: gluten, milk, egg</p></div>
+<div class="card"><div class="row"><h3>Classic Lasagna</h3><span class="price">319,-</span></div><p>Layered lasagna sheets with bechamel and tomato sauce with minced beef. Served with a green side salad.</p><p class="al">Allergener: gluten, milk</p></div>
+</div>
+
+<h3 class="cat">Hovedretter</h3>
+<div class="grid">
+<div class="card"><div class="row"><h3>Mountain Trout</h3><span class="price">449,-</span></div><p>Pan fried mountain cod* served with cucumber salad, steamed broccolini, herb baked amandine potatoes, sour cream and a wedge of lemon. *If available, can be substituted with salmon.</p><p class="al">Allergener: milk, sulphites, fish</p></div>
+<div class="card"><div class="row"><h3>Entrecote</h3><span class="price">449,-</span></div><p>EntrecÃ´te (200 grams) med carrot puree, ovenbaked cherry tomatoes, herb baked amandine potatoes and bÃ©arnaise sauce.</p><p class="al">Allergener: gluten, milk</p></div>
+<div class="card"><div class="row"><h3>Oxe Stew</h3><span class="price">319,-</span></div><p>Creamy oxe stew with carrot. Served with mashed potatoes and lingonberries.</p><p class="al">Allergener: milk</p></div>
+<div class="card"><div class="row"><h3>Signature Burger</h3><span class="price">329,-</span></div><p>Beef loin burger (200 grams) with bacon, cheddar, lettuce, pickled cucumber, tomato, caramelized onion, tomato mayo and french fries.</p><p class="al">Allergener: gluten, milk, egg, sulphites</p></div>
+<div class="card"><div class="row"><h3>Cazuela</h3><span class="price">349,-</span></div><p>Slow cooked Chilean stew with oxtail or chicken (based on availability) in broth with potato, pumpkin and corn on the cob. Side onion and tomato salad.</p></div>
+<div class="card"><div class="row"><h3>Beef Strips</h3><span class="price">319,-</span></div><p>Beef strips with fried mushrooms, onions and peppers. Served with bÃ©arnaise sauce and fries.</p><p class="al">Allergener: milk, gluten, eggs</p></div>
+</div>
+
+<p class="note">Priser i norske kroner. Si fra til betjeningen om allergier. Menyen kan endres, se ogsÃ¥ <a href="https://itachino.no">itachino.no</a>.</p>
+</div></section>
+
+<section id="bilder"><div class="wrap">
+<h2>Fra kjÃ¸kkenet</h2>
+<div class="gal">
+<img src="bilde1.jpg" alt="Spaghetti carbonara" loading="lazy">
+<img src="bilde2.jpg" alt="Pasta med lime og urter" loading="lazy">
+<img src="bilde3.jpg" alt="Spaghetti bolognese" loading="lazy">
+<img src="bilde4.jpg" alt="Sopaipillas" loading="lazy">
+<img src="bilde5.jpg" alt="MaisbrÃ¸d med saus" loading="lazy">
+<img src="bilde6.jpg" alt="Pasta med scampi" loading="lazy">
+</div>
+</div></section>
+
+<section id="omtaler"><div class="wrap">
+<h2>Gjestene vÃ¥re</h2>
+<div class="rating">4,2 â˜…</div>
+<p>Basert pÃ¥ 181 vurderinger pÃ¥ Google Maps. PopulÃ¦re tider er sÃ¸ndager, og det kan bli ventetid nÃ¥r det er fullt, sÃ¥ ring gjerne i forkant.</p>
+</div></section>
+
+<section id="kontakt"><div class="wrap">
+<h2>Finn oss</h2>
+<dl>
+<dt>Adresse</dt><dd>Vangsgata 12, 5700 Vossevangen</dd>
+<dt>Telefon</dt><dd><a href="tel:+4792920528">92 92 05 28</a></dd>
+<dt>Nett</dt><dd><a href="https://itachino.no">itachino.no</a></dd>
+<dt>Ã…pent</dt><dd>Fra kl. 15, stenger kl. 22 pÃ¥ sÃ¸ndager. Sjekk Google Maps for dagens tider.</dd>
+</dl>
+<p style="margin-top:24px"><a class="btn" href="https://www.google.com/maps/search/?api=1&query=Itachino+Vangsgata+12+Vossevangen">Veibeskrivelse</a></p>
+</div></section>
+</main>
+
+<footer>Â© Itachino Â· Vangsgata 12, Vossevangen</footer>
+</body>
+</html>
