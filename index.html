@@ -1,128 +1,360 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="nb">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Itachino â€“ Restaurant i Vossevangen</title>
-<style>
-:root{--bg:#faf6f0;--fg:#2a2220;--muted:#6f625c;--card:#fff;--accent:#b8322a;--line:#e6dcd0;--hero:#2a1a17;--herofg:#faf6f0;
-box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#191311;--fg:#f3ebe3;--muted:#b3a59b;--card:#241b18;--accent:#e2574d;--line:#3a2d28;--hero:#0f0a09;--herofg:#f3ebe3}}
-:root[data-theme="dark"]{--bg:#191311;--fg:#f3ebe3;--muted:#b3a59b;--card:#241b18;--accent:#e2574d;--line:#3a2d28;--hero:#0f0a09;--herofg:#f3ebe3}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.6 Georgia,"Times New Roman",serif}
-a{color:var(--accent)}
-.wrap{max-width:860px;margin:0 auto;padding:0 20px}
-header{background:var(--hero);color:var(--herofg);text-align:center;padding:72px 20px 64px}
-header h1{font-size:clamp(44px,10vw,84px);margin:0;letter-spacing:.04em;font-weight:400}
-header p{max-width:520px;margin:16px auto 28px;opacity:.85}
-.btn{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;padding:12px 26px;border-radius:999px;font:600 15px system-ui,sans-serif;margin:4px}
-.btn.alt{background:transparent;border:1px solid currentColor;color:var(--herofg)}
-section{padding:56px 0;border-bottom:1px solid var(--line)}
-h2{font-weight:400;font-size:30px;margin:0 0 20px}
-.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;font:14px system-ui,sans-serif}
-.tags span{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:6px 14px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
-.card h3{margin:0 0 4px;font-size:20px;font-weight:400}
-.card p{margin:0;color:var(--muted);font-size:15px}
-.note{color:var(--muted);font-size:14px;margin-top:16px}
-.cat{font-weight:400;font-size:22px;margin:32px 0 12px;color:var(--accent)}
-.row{display:flex;justify-content:space-between;gap:12px}
-.price{font:600 15px system-ui,sans-serif;white-space:nowrap}
-.al{font:12px system-ui,sans-serif;margin-top:8px!important}
-.gal{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
-.gal img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:12px;display:block}
-.rating{font-size:44px;line-height:1}
-dl{display:grid;grid-template-columns:auto 1fr;gap:10px 20px;margin:0}
-dt{color:var(--muted)}dd{margin:0}
-footer{padding:32px 20px;text-align:center;color:var(--muted);font-size:14px}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f1e8">
+  <meta name="description" content="Uoffisielt nettsidekonsept for Itachino i Vossevangen. Meny og opplysninger må bekreftes av restauranten.">
+  <title>Itachino — et nettsidekonsept</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f5f1e8;
+      --paper-deep: #ebe4d5;
+      --ink: #202c25;
+      --muted: #667168;
+      --green: #294b3c;
+      --green-deep: #18372b;
+      --red: #b74632;
+      --line: #d9d1c2;
+      --white: #fffdf8;
+      --serif: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+      --sans: "Avenir Next", Avenir, "Segoe UI", sans-serif;
+      font-family: var(--sans);
+      color: var(--ink);
+      background: var(--paper);
+      scroll-behavior: smooth;
+      scroll-padding-top: 5rem;
+    }
+
+    * { box-sizing: border-box; }
+    body { margin: 0; min-width: 320px; background: var(--paper); font-size: 16px; line-height: 1.6; }
+    a { color: inherit; }
+    a:focus-visible { outline: 3px solid var(--red); outline-offset: 4px; }
+    .skip-link { position: absolute; top: -5rem; left: 1rem; z-index: 10; padding: .7rem 1rem; background: var(--white); }
+    .skip-link:focus { top: 1rem; }
+    .wrap { width: min(1120px, calc(100% - 48px)); margin-inline: auto; }
+
+    .concept-banner {
+      padding: .55rem 1rem;
+      background: #f0dfc2;
+      color: #49351d;
+      text-align: center;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .045em;
+    }
+    .site-header { position: sticky; top: 0; z-index: 5; border-bottom: 1px solid var(--line); background: rgb(245 241 232 / 96%); backdrop-filter: blur(12px); }
+    .nav { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; }
+    .wordmark { color: var(--green-deep); font-family: var(--serif); font-size: 1.7rem; font-weight: 700; letter-spacing: -.055em; text-decoration: none; }
+    .nav-links { display: flex; align-items: center; gap: clamp(1rem, 3vw, 2.2rem); }
+    .nav-links a { text-decoration: none; font-size: .9rem; font-weight: 600; }
+    .nav-links a:hover { color: var(--red); }
+    .nav-links .nav-call { color: var(--red); }
+
+    .hero { overflow: hidden; position: relative; padding: clamp(4.5rem, 10vw, 8rem) 0 clamp(5rem, 9vw, 7.5rem); background: var(--green-deep); color: var(--white); }
+    .hero::after { position: absolute; right: -8rem; bottom: -17rem; width: 39rem; aspect-ratio: 1; border: 1px solid rgb(255 253 248 / 15%); border-radius: 50%; content: ""; box-shadow: 0 0 0 3rem rgb(255 253 248 / 3%), 0 0 0 7rem rgb(255 253 248 / 2%); pointer-events: none; }
+    .hero-inner { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(220px, .7fr); align-items: end; gap: 3rem; }
+    .eyebrow { margin: 0 0 1.3rem; color: #d4bc8c; font-size: .75rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
+    h1, h2, h3, h4, p { margin-top: 0; }
+    h1 { max-width: 780px; margin-bottom: 1.2rem; font-family: var(--serif); font-size: clamp(4rem, 11vw, 8.4rem); font-weight: 400; letter-spacing: -.075em; line-height: .9; }
+    .hero-copy { max-width: 510px; margin-bottom: 2rem; color: #e0e5dd; font-family: var(--serif); font-size: clamp(1.2rem, 2.4vw, 1.6rem); line-height: 1.45; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; }
+    .button { display: inline-flex; min-height: 48px; align-items: center; justify-content: center; padding: .7rem 1.2rem; border: 1px solid transparent; border-radius: 3px; background: var(--red); color: #fff; font-size: .88rem; font-weight: 700; text-decoration: none; transition: background .18s ease, transform .18s ease; }
+    .button:hover { transform: translateY(-2px); background: #973824; }
+    .button-light { border-color: rgb(255 255 255 / 48%); background: transparent; }
+    .button-light:hover { background: rgb(255 255 255 / 10%); }
+    .hero-aside { padding: 1.3rem 0 0 1.5rem; border-left: 1px solid rgb(255 255 255 / 32%); color: #e0e5dd; font-size: .9rem; }
+    .hero-aside strong { display: block; margin-bottom: .25rem; color: #fff; font-family: var(--serif); font-size: 1.35rem; font-weight: 400; }
+
+    .intro { display: grid; grid-template-columns: .8fr 1.2fr; gap: 4rem; padding-block: clamp(4rem, 8vw, 7rem); border-bottom: 1px solid var(--line); }
+    .section-label { margin: .4rem 0 0; color: var(--red); font-size: .72rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+    h2 { margin-bottom: 1rem; color: var(--green-deep); font-family: var(--serif); font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 400; letter-spacing: -.055em; line-height: 1.05; }
+    .intro-copy { max-width: 620px; margin: 0; color: var(--muted); font-family: var(--serif); font-size: 1.2rem; }
+
+    .menu-section { padding-block: clamp(4rem, 8vw, 7rem); border-bottom: 1px solid var(--line); }
+    .menu-heading { display: flex; align-items: end; justify-content: space-between; gap: 2rem; margin-bottom: 3.2rem; }
+    .menu-heading h2 { margin-bottom: .7rem; }
+    .menu-heading p { max-width: 400px; margin: 0 0 .4rem; color: var(--muted); font-size: .88rem; }
+    .menu-category { margin: 2.8rem 0 1rem; padding-bottom: .65rem; border-bottom: 1px solid var(--line); color: var(--red); font-family: var(--serif); font-size: 1.65rem; font-weight: 400; }
+    .menu-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 3rem; }
+    .dish { padding: 1.15rem 0 1.25rem; border-bottom: 1px solid var(--line); }
+    .dish-top { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; }
+    .dish h4 { margin: 0; color: var(--ink); font-family: var(--serif); font-size: 1.22rem; font-weight: 600; line-height: 1.3; }
+    .price { flex: 0 0 auto; color: var(--green); font-size: .92rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .dish p { margin: .5rem 0 0; color: var(--muted); font-size: .88rem; line-height: 1.55; }
+    .dish .allergens { margin-top: .38rem; color: #756e61; font-size: .76rem; }
+    .menu-note { margin: 2rem 0 0; padding: 1rem 1.2rem; border-left: 3px solid var(--red); background: var(--paper-deep); color: #514b41; font-size: .86rem; }
+
+    .gallery-section { padding-block: clamp(4rem, 8vw, 7rem); border-bottom: 1px solid var(--line); }
+    .gallery-heading { display: flex; align-items: end; justify-content: space-between; gap: 2rem; margin-bottom: 2rem; }
+    .gallery-heading h2 { margin-bottom: .7rem; }
+    .gallery-heading p { max-width: 390px; margin: 0 0 .4rem; color: var(--muted); font-size: .88rem; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+    .gallery-card { overflow: hidden; aspect-ratio: 4 / 5; margin: 0; background: var(--paper-deep); }
+    .gallery-card img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .3s ease; }
+    .gallery-card:hover img { transform: scale(1.04); }
+
+    .visit { padding-block: clamp(4rem, 8vw, 7rem); background: var(--paper-deep); }
+    .visit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+    .visit-intro { max-width: 440px; color: var(--muted); }
+    .contact-list { margin: 0; }
+    .contact-row { display: grid; grid-template-columns: 125px 1fr; gap: 1rem; padding: .85rem 0; border-bottom: 1px solid #d0c7b7; }
+    .contact-row dt { color: var(--muted); font-size: .84rem; }
+    .contact-row dd { margin: 0; font-weight: 600; }
+    .contact-row a { text-decoration-thickness: 1px; text-underline-offset: 3px; }
+    .visit-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.5rem; }
+    .visit .button { background: var(--green); }
+    .visit .button:hover { background: var(--green-deep); }
+    .visit .button-outline { border-color: var(--green); background: transparent; color: var(--green); }
+    .visit .button-outline:hover { background: rgb(41 75 60 / 8%); }
+    .hours-note { margin: 1rem 0 0; color: var(--muted); font-size: .82rem; }
+
+    .closing { padding-block: 4rem; background: var(--green-deep); color: var(--white); text-align: center; }
+    .closing p { margin: 0; color: #e0e5dd; font-family: var(--serif); font-size: clamp(1.7rem, 4vw, 2.5rem); }
+    .site-footer { padding: 1.3rem 0; background: #122b21; color: #c9d2cb; font-size: .78rem; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+
+    @media (max-width: 720px) {
+      .wrap { width: min(100% - 36px, 560px); }
+      .nav { min-height: 64px; align-items: flex-start; flex-direction: column; justify-content: center; gap: .2rem; padding-block: .65rem; }
+      .wordmark { font-size: 1.45rem; line-height: 1.2; }
+      .nav-links { width: 100%; justify-content: space-between; gap: .7rem; }
+      .nav-links a { font-size: .78rem; }
+      .hero { padding-block: 4.5rem; }
+      .hero-inner, .intro, .visit-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .hero-aside { max-width: 330px; padding: 0 0 0 1rem; }
+      .intro { gap: 1rem; }
+      .section-label { margin: 0; }
+      .menu-heading { align-items: flex-start; flex-direction: column; gap: .5rem; margin-bottom: 2rem; }
+      .menu-grid { grid-template-columns: 1fr; }
+      .menu-category { margin-top: 2.2rem; }
+      .gallery-heading { align-items: flex-start; flex-direction: column; gap: .5rem; }
+      .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .contact-row { grid-template-columns: 100px 1fr; }
+      .footer-inner { align-items: flex-start; flex-direction: column; gap: .25rem; }
+    }
+    @media (max-width: 380px) {
+      .nav-links { gap: .4rem; }
+      .nav-links a { font-size: .72rem; }
+      .gallery-grid { gap: 8px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+      .gallery-card img { transition: none; }
+    }
+  </style>
 </head>
 <body>
-<header>
-<h1>Itachino</h1>
-<p>Pasta, pizza og varme middagsretter i Vangsgata i Vossevangen.</p>
-<a class="btn" href="tel:+4792920528">Ring 92 92 05 28</a>
-<a class="btn alt" href="#meny">Se menyen</a>
-</header>
+  <a class="skip-link" href="#main">Hopp til innhold</a>
+  <div class="concept-banner">UOFFISIELT KONSEPT · Ikke en offisiell nettside · Opplysninger må bekreftes av Itachino</div>
 
-<main>
-<section id="om"><div class="wrap">
-<h2>Velkommen</h2>
-<p>Itachino er en restaurant i Vangsgata 12 i Vossevangen. Hos oss kan du spise i restauranten, ta med maten hjem eller fÃ¥ den levert.</p>
-<div class="tags"><span>Servering</span><span>Takeaway</span><span>Levering</span><span>Kvinneeid</span><span>LHBTQ+-vennlig</span></div>
-</div></section>
+  <header class="site-header">
+    <nav class="nav wrap" aria-label="Hovedmeny">
+      <a class="wordmark" href="#top" aria-label="Itachino — til toppen">Itachino</a>
+      <div class="nav-links">
+        <a href="#om">Om</a>
+        <a href="#meny">Meny</a>
+        <a href="#bilder">Bilder</a>
+        <a href="#besok">Finn oss</a>
+        <a class="nav-call" href="tel:+4792920528">Ring 92 92 05 28</a>
+      </div>
+    </nav>
+  </header>
 
-<section id="meny"><div class="wrap">
-<h2>Meny</h2>
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero-inner wrap">
+        <div>
+          <p class="eyebrow">Vangsgata · Vossevangen</p>
+          <h1 id="hero-title">Itachino</h1>
+          <p class="hero-copy">Pasta, pizza og middagsretter i Vossevangen.</p>
+          <div class="hero-actions">
+            <a class="button" href="#meny">Utforsk menyen</a>
+            <a class="button button-light" href="tel:+4792920528">Ring restauranten</a>
+          </div>
+        </div>
+        <aside class="hero-aside">
+          <strong>Et nettsidekonsept</strong>
+          Designutkast laget for presentasjon. Innhold og bedriftsopplysninger er ikke bekreftet av restauranten.
+        </aside>
+      </div>
+    </section>
 
-<h3 class="cat">Forretter og salat</h3>
-<div class="grid">
-<div class="card"><div class="row"><h3>Sopaipillas</h3><span class="price">99,-</span></div><p>Two deep fried Chilean pumpkin breads served with pebre.</p><p class="al">Allergener: gluten, milk</p></div>
-<div class="card"><div class="row"><h3>Caesar Salad</h3><span class="price">289,-</span></div><p>Served with chicken or smoked salmon / vegan chicken, bacon, parmesan, romaine lettuce, croutons and caesar dressing.</p><p class="al">Allergener: gluten, milk, egg, sulphites, (fish)</p></div>
-</div>
+    <section class="intro wrap" id="om" aria-labelledby="about-title">
+      <p class="section-label">Itachino · Vossevangen</p>
+      <div>
+        <h2 id="about-title">Noe godt å samles om.</h2>
+        <p class="intro-copy">Et forslag til en enkel inngang til Itachinos meny, adresse og kontaktinformasjon. Denne siden er et uoffisielt konsept, ikke en offisiell kanal.</p>
+      </div>
+    </section>
 
-<h3 class="cat">Pizza</h3>
-<div class="grid">
-<div class="card"><div class="row"><h3>Pizza With Serrano</h3><span class="price">299,-</span></div><p>Pizza with tomato sauce, mozzarella and serrano. Topped with rocket.</p><p class="al">Allergener: gluten, milk</p></div>
-<div class="card"><div class="row"><h3>Vegetarian Pizza</h3><span class="price">249,-</span></div><p>Pizza with tomato sauce, mozzarella, bell pepper, onion, cherry tomatoes, and rocket.</p><p class="al">Allergener: gluten, milk</p></div>
-</div>
+    <section class="menu-section wrap" id="meny" aria-labelledby="menu-title">
+      <div class="menu-heading">
+        <div>
+          <p class="section-label">Et utvalg fra menyen</p>
+          <h2 id="menu-title">Meny</h2>
+        </div>
+        <p>Retter, priser og allergenopplysninger er gjengitt fra det innsendte utgangspunktet og må bekreftes før eventuell publisering.</p>
+      </div>
 
-<h3 class="cat">Pasta</h3>
-<div class="grid">
-<div class="card"><div class="row"><h3>Tagliatelle Carbonara</h3><span class="price">299,-</span></div><p>Pasta with guanciale, pecorino cheese and parmesan cheese. Served with focaccia.</p><p class="al">Allergener: gluten, milk, eggs</p></div>
-<div class="card"><div class="row"><h3>Spagetti Bolognese</h3><span class="price">279,-</span></div><p>Pasta with tomato sauce with basil, carrot, parmesan cheese, and minced beef. Served with focaccia.</p><p class="al">Allergener: gluten, milk</p></div>
-<div class="card"><div class="row"><h3>Cannelloni</h3><span class="price">295,-</span></div><p>Cannelloni with spinach, ricotta cheese and bechamel and tomato sauce. Served with focaccia and a green salad.</p><p class="al">Allergener: gluten, milk, egg</p></div>
-<div class="card"><div class="row"><h3>Creamy Pasta With Scampi</h3><span class="price">339,-</span></div><p>Pasta with creamy sauce made out of zucchini, chili, garlic, white wine, and scampi. Topped with parmesan cheese.</p><p class="al">Allergener: gluten, milk, shellfish</p></div>
-<div class="card"><div class="row"><h3>Vegetarian Tagliatelle</h3><span class="price">289,-</span></div><p>Tagliatelle with bell pepper, onion, champignon mushroom and tomato sauce. Served with focaccia and a green salad.</p><p class="al">Allergener: gluten, milk, egg</p></div>
-<div class="card"><div class="row"><h3>Classic Lasagna</h3><span class="price">319,-</span></div><p>Layered lasagna sheets with bechamel and tomato sauce with minced beef. Served with a green side salad.</p><p class="al">Allergener: gluten, milk</p></div>
-</div>
+      <h3 class="menu-category">Forretter og salat</h3>
+      <div class="menu-grid">
+        <article class="dish">
+          <div class="dish-top"><h4>Sopaipillas</h4><span class="price">99,-</span></div>
+          <p>To frityrstekte chilenske gresskarbrød, servert med pebre.</p>
+          <p class="allergens">Allergener: gluten, melk</p>
+        </article>
+        <article class="dish">
+          <div class="dish-top"><h4>Caesarsalat</h4><span class="price">289,-</span></div>
+          <p>Serveres med kylling eller røkt laks / vegansk kylling, bacon, parmesan, romanosalat, krutonger og cæsardressing.</p>
+          <p class="allergens">Allergener: gluten, melk, egg, sulfitter (fisk)</p>
+        </article>
+      </div>
 
-<h3 class="cat">Hovedretter</h3>
-<div class="grid">
-<div class="card"><div class="row"><h3>Mountain Trout</h3><span class="price">449,-</span></div><p>Pan fried mountain cod* served with cucumber salad, steamed broccolini, herb baked amandine potatoes, sour cream and a wedge of lemon. *If available, can be substituted with salmon.</p><p class="al">Allergener: milk, sulphites, fish</p></div>
-<div class="card"><div class="row"><h3>Entrecote</h3><span class="price">449,-</span></div><p>EntrecÃ´te (200 grams) med carrot puree, ovenbaked cherry tomatoes, herb baked amandine potatoes and bÃ©arnaise sauce.</p><p class="al">Allergener: gluten, milk</p></div>
-<div class="card"><div class="row"><h3>Oxe Stew</h3><span class="price">319,-</span></div><p>Creamy oxe stew with carrot. Served with mashed potatoes and lingonberries.</p><p class="al">Allergener: milk</p></div>
-<div class="card"><div class="row"><h3>Signature Burger</h3><span class="price">329,-</span></div><p>Beef loin burger (200 grams) with bacon, cheddar, lettuce, pickled cucumber, tomato, caramelized onion, tomato mayo and french fries.</p><p class="al">Allergener: gluten, milk, egg, sulphites</p></div>
-<div class="card"><div class="row"><h3>Cazuela</h3><span class="price">349,-</span></div><p>Slow cooked Chilean stew with oxtail or chicken (based on availability) in broth with potato, pumpkin and corn on the cob. Side onion and tomato salad.</p></div>
-<div class="card"><div class="row"><h3>Beef Strips</h3><span class="price">319,-</span></div><p>Beef strips with fried mushrooms, onions and peppers. Served with bÃ©arnaise sauce and fries.</p><p class="al">Allergener: milk, gluten, eggs</p></div>
-</div>
+      <h3 class="menu-category">Pizza</h3>
+      <div class="menu-grid">
+        <article class="dish">
+          <div class="dish-top"><h4>Pizza med serrano</h4><span class="price">299,-</span></div>
+          <p>Tomatsaus, mozzarella og serrano, toppet med ruccola.</p>
+          <p class="allergens">Allergener: gluten, melk</p>
+        </article>
+        <article class="dish">
+          <div class="dish-top"><h4>Vegetarpizza</h4><span class="price">249,-</span></div>
+          <p>Tomatsaus, mozzarella, paprika, løk, cherrytomater og ruccola.</p>
+          <p class="allergens">Allergener: gluten, melk</p>
+        </article>
+      </div>
 
-<p class="note">Priser i norske kroner. Si fra til betjeningen om allergier. Menyen kan endres, se ogsÃ¥ <a href="https://itachino.no">itachino.no</a>.</p>
-</div></section>
+      <h3 class="menu-category">Pasta</h3>
+      <div class="menu-grid">
+        <article class="dish">
+          <div class="dish-top"><h4>Tagliatelle carbonara</h4><span class="price">299,-</span></div>
+          <p>Pasta med guanciale, pecorino og parmesan. Serveres med focaccia.</p>
+          <p class="allergens">Allergener: gluten, melk, egg</p>
+        </article>
+        <article class="dish">
+          <div class="dish-top"><h4>Spaghetti bolognese</h4><span class="price">279,-</span></div>
+          <p>Pasta med tomatsaus, basilikum, gulrot, parmesan og kjøttdeig. Serveres med focaccia.</p>
+          <p class="allergens">Allergener: gluten, melk</p>
+        </article>
+        <article class="dish">
+          <div class="dish-top"><h4>Cannelloni</h4><span class="price">295,-</span></div>
+          <p>Cannelloni med spinat, ricotta, béchamel- og tomatsaus. Serveres med focaccia og grønn salat.</p>
+          <p class="allergens">Allergener: gluten, melk, egg</p>
+        </article>
+        <article class="dish">
+          <div class="dish-top"><h4>Kremet pasta med scampi</h4><span class="price">339,-</span></div>
+          <p>Pasta med kremet saus av squash, chili, hvitløk og hvitvin, med scampi og parmesan.</p>
+          <p class="allergens">Allergener: gluten, melk, skalldyr</p>
+        </article>
+        <article class="dish">
+          <div class="dish-top"><h4>Vegetartagliatelle</h4><span class="price">289,-</span></div>
+          <p>Tagliatelle med paprika, løk, sjampinjong og tomatsaus. Serveres med focaccia og grønn salat.</p>
+          <p class="allergens">Allergener: gluten, melk, egg</p>
+        </article>
+        <article class="dish">
+          <div class="dish-top"><h4>Klassisk lasagne</h4><span class="price">319,-</span></div>
+          <p>Lasagneplater med béchamel og tomatsaus med kjøttdeig. Serveres med grønn salat.</p>
+          <p class="allergens">Allergener: gluten, melk</p>
+        </article>
+      </div>
 
-<section id="bilder"><div class="wrap">
-<h2>Fra kjÃ¸kkenet</h2>
-<div class="gal">
-<img src="bilde1.jpg" alt="Spaghetti carbonara" loading="lazy">
-<img src="bilde2.jpg" alt="Pasta med lime og urter" loading="lazy">
-<img src="bilde3.jpg" alt="Spaghetti bolognese" loading="lazy">
-<img src="bilde4.jpg" alt="Sopaipillas" loading="lazy">
-<img src="bilde5.jpg" alt="MaisbrÃ¸d med saus" loading="lazy">
-<img src="bilde6.jpg" alt="Pasta med scampi" loading="lazy">
-</div>
-</div></section>
+      <h3 class="menu-category">Hovedretter</h3>
+      <div class="menu-grid">
+        <article class="dish">
+          <div class="dish-top"><h4>Mountain Trout</h4><span class="price">449,-</span></div>
+          <p>Stekt fjelltorsk* med agurksalat, brokkolini, urtebakte amandinepoteter, rømme og sitron. *Kan byttes med laks hvis tilgjengelig.</p>
+          <p class="allergens">Allergener: melk, sulfitter, fisk</p>
+        </article>
+        <article class="dish">
+          <div class="dish-top"><h4>Entrecôte</h4><span class="price">449,-</span></div>
+          <p>Entrecôte (200 g) med gulrotpuré, ovnsbakte cherrytomater, urtebakte amandinepoteter og béarnaisesaus.</p>
+          <p class="allergens">Allergener: gluten, melk</p>
+        </article>
+        <article class="dish">
+          <div class="dish-top"><h4>Oxe Stew</h4><span class="price">319,-</span></div>
+          <p>Kremet oksegryte med gulrot. Serveres med potetmos og tyttebær.</p>
+          <p class="allergens">Allergener: melk</p>
+        </article>
+        <article class="dish">
+          <div class="dish-top"><h4>Signaturburger</h4><span class="price">329,-</span></div>
+          <p>Burger av oksefilet (200 g) med bacon, cheddar, salat, sylteagurk, tomat, karamellisert løk, tomatmajones og pommes frites.</p>
+          <p class="allergens">Allergener: gluten, melk, egg, sulfitter</p>
+        </article>
+        <article class="dish">
+          <div class="dish-top"><h4>Cazuela</h4><span class="price">349,-</span></div>
+          <p>Langtidskokt chilensk gryte med oksehale eller kylling (avhengig av tilgjengelighet), kraft, potet, gresskar og maiskolbe. Serveres med løk- og tomatsalat.</p>
+        </article>
+        <article class="dish">
+          <div class="dish-top"><h4>Strimler av storfekjøtt</h4><span class="price">319,-</span></div>
+          <p>Storfekjøtt med stekt sopp, løk og paprika. Serveres med béarnaisesaus og pommes frites.</p>
+          <p class="allergens">Allergener: melk, gluten, egg</p>
+        </article>
+      </div>
+      <p class="menu-note">Priser i norske kroner. Meny, priser og allergener må bekreftes av restauranten. Spør betjeningen om allergener og mulig krysskontaminering.</p>
+    </section>
 
-<section id="omtaler"><div class="wrap">
-<h2>Gjestene vÃ¥re</h2>
-<div class="rating">4,2 â˜…</div>
-<p>Basert pÃ¥ 181 vurderinger pÃ¥ Google Maps. PopulÃ¦re tider er sÃ¸ndager, og det kan bli ventetid nÃ¥r det er fullt, sÃ¥ ring gjerne i forkant.</p>
-</div></section>
+    <section class="gallery-section wrap" id="bilder" aria-labelledby="gallery-title">
+      <div class="gallery-heading">
+        <div>
+          <p class="section-label">Et inntrykk av stedet</p>
+          <h2 id="gallery-title">Fra Itachino</h2>
+        </div>
+        <p>Bilder levert for dette konseptutkastet. Bruk og publisering må godkjennes av restauranten.</p>
+      </div>
+      <div class="gallery-grid">
+        <figure class="gallery-card"><img src="assets/gallery-01.png" alt="Gratinert pastarett servert med salat" loading="lazy" decoding="async"></figure>
+        <figure class="gallery-card"><img src="assets/gallery-02.png" alt="Kremet pastarett med brød" loading="lazy" decoding="async"></figure>
+        <figure class="gallery-card"><img src="assets/gallery-03.png" alt="Stekt fisk med sitron og poteter" loading="lazy" decoding="async"></figure>
+        <figure class="gallery-card"><img src="assets/gallery-04.png" alt="Kremet pasta med scampi og brød" loading="lazy" decoding="async"></figure>
+        <figure class="gallery-card"><img src="assets/gallery-05.png" alt="Kremet pasta med revet ost og brød" loading="lazy" decoding="async"></figure>
+        <figure class="gallery-card"><img src="assets/gallery-06.png" alt="Tagliatelle med tomatsaus og brød" loading="lazy" decoding="async"></figure>
+        <figure class="gallery-card"><img src="assets/gallery-07.png" alt="Tagliatelle med revet ost og stekt kjøtt" loading="lazy" decoding="async"></figure>
+        <figure class="gallery-card"><img src="assets/gallery-08.png" alt="Gylne bakverk servert med dip" loading="lazy" decoding="async"></figure>
+        <figure class="gallery-card"><img src="assets/gallery-09.png" alt="Rundt, gyllent brød med urtedip" loading="lazy" decoding="async"></figure>
+        <figure class="gallery-card"><img src="assets/gallery-10.png" alt="Spaghetti med kjøttsaus" loading="lazy" decoding="async"></figure>
+        <figure class="gallery-card"><img src="assets/gallery-11.png" alt="Kremet pasta med lime, revet ost og knekkebrød" loading="lazy" decoding="async"></figure>
+        <figure class="gallery-card"><img src="assets/restaurant-interior.png" alt="Spiseområdet sett mot vinduene mot gaten" loading="lazy" decoding="async"></figure>
+        <figure class="gallery-card"><img src="assets/wrap-fries-plate.png" alt="Tallerken med pommes frites, wraps, salat og dip" loading="lazy" decoding="async"></figure>
+      </div>
+    </section>
 
-<section id="kontakt"><div class="wrap">
-<h2>Finn oss</h2>
-<dl>
-<dt>Adresse</dt><dd>Vangsgata 12, 5700 Vossevangen</dd>
-<dt>Telefon</dt><dd><a href="tel:+4792920528">92 92 05 28</a></dd>
-<dt>Nett</dt><dd><a href="https://itachino.no">itachino.no</a></dd>
-<dt>Ã…pent</dt><dd>Fra kl. 15, stenger kl. 22 pÃ¥ sÃ¸ndager. Sjekk Google Maps for dagens tider.</dd>
-</dl>
-<p style="margin-top:24px"><a class="btn" href="https://www.google.com/maps/search/?api=1&query=Itachino+Vangsgata+12+Vossevangen">Veibeskrivelse</a></p>
-</div></section>
-</main>
+    <section class="visit" id="besok" aria-labelledby="visit-title">
+      <div class="visit-grid wrap">
+        <div>
+          <p class="section-label">Besøk oss</p>
+          <h2 id="visit-title">Finn veien til Itachino.</h2>
+          <p class="visit-intro">Adresse og kontaktopplysninger nedenfor kommer fra det innsendte utgangspunktet og må bekreftes før eventuell publisering.</p>
+          <div class="visit-actions">
+            <a class="button" href="https://www.google.com/maps/search/?api=1&amp;query=Itachino+Vangsgata+12+Vossevangen">Veibeskrivelse</a>
+            <a class="button button-outline" href="tel:+4792920528">Ring 92 92 05 28</a>
+          </div>
+        </div>
+        <div>
+          <dl class="contact-list">
+            <div class="contact-row"><dt>Adresse</dt><dd>Vangsgata 12, 5700 Vossevangen</dd></div>
+            <div class="contact-row"><dt>Telefon</dt><dd><a href="tel:+4792920528">92 92 05 28</a></dd></div>
+            <div class="contact-row"><dt>Nettsted</dt><dd><a href="https://itachino.no">itachino.no</a></dd></div>
+            <div class="contact-row"><dt>Åpningstider</dt><dd>Oppgitt: fra kl. 15. Søndag til kl. 22.</dd></div>
+          </dl>
+          <p class="hours-note">Åpningstidene er ikke bekreftet. Sjekk restaurantens offisielle kanaler før besøket.</p>
+        </div>
+      </div>
+    </section>
 
-<footer>Â© Itachino Â· Vangsgata 12, Vossevangen</footer>
+    <section class="closing" aria-label="Konseptstatus">
+      <div class="wrap">
+        <p>Et uoffisielt konsept — laget for presentasjon.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner wrap">
+      <span>Itachino · Vangsgata 12, Vossevangen</span>
+      <span>Konseptutkast — ikke tilknyttet eller godkjent av restauranten.</span>
+    </div>
+  </footer>
 </body>
 </html>
