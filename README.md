@@ -1,5 +1,5 @@
-# Itachino website concept
+# Rongahuset website
 
-Unofficial website concept for presentation only. It is not an official Itachino website and is not affiliated with or approved by the restaurant.
+Norwegian-language website for Rongahuset in Evanger.
 
-The menu, prices, address, phone number, and opening hours shown in this demo are based on supplied material and must be verified by the restaurant before any official use. Supplied images must also be approved for publication.
+Add the eight gallery images to `bilder/` using the filenames referenced in `index.html`. If an image is unavailable, the page displays a text placeholder instead of a broken image.

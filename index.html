@@ -1,360 +1,166 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="nb">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f5f1e8">
-  <meta name="description" content="Uoffisielt nettsidekonsept for Itachino i Vossevangen. Meny og opplysninger må bekreftes av restauranten.">
-  <title>Itachino — et nettsidekonsept</title>
-  <style>
-    :root {
-      color-scheme: light;
-      --paper: #f5f1e8;
-      --paper-deep: #ebe4d5;
-      --ink: #202c25;
-      --muted: #667168;
-      --green: #294b3c;
-      --green-deep: #18372b;
-      --red: #b74632;
-      --line: #d9d1c2;
-      --white: #fffdf8;
-      --serif: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
-      --sans: "Avenir Next", Avenir, "Segoe UI", sans-serif;
-      font-family: var(--sans);
-      color: var(--ink);
-      background: var(--paper);
-      scroll-behavior: smooth;
-      scroll-padding-top: 5rem;
-    }
-
-    * { box-sizing: border-box; }
-    body { margin: 0; min-width: 320px; background: var(--paper); font-size: 16px; line-height: 1.6; }
-    a { color: inherit; }
-    a:focus-visible { outline: 3px solid var(--red); outline-offset: 4px; }
-    .skip-link { position: absolute; top: -5rem; left: 1rem; z-index: 10; padding: .7rem 1rem; background: var(--white); }
-    .skip-link:focus { top: 1rem; }
-    .wrap { width: min(1120px, calc(100% - 48px)); margin-inline: auto; }
-
-    .concept-banner {
-      padding: .55rem 1rem;
-      background: #f0dfc2;
-      color: #49351d;
-      text-align: center;
-      font-size: .78rem;
-      font-weight: 700;
-      letter-spacing: .045em;
-    }
-    .site-header { position: sticky; top: 0; z-index: 5; border-bottom: 1px solid var(--line); background: rgb(245 241 232 / 96%); backdrop-filter: blur(12px); }
-    .nav { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; }
-    .wordmark { color: var(--green-deep); font-family: var(--serif); font-size: 1.7rem; font-weight: 700; letter-spacing: -.055em; text-decoration: none; }
-    .nav-links { display: flex; align-items: center; gap: clamp(1rem, 3vw, 2.2rem); }
-    .nav-links a { text-decoration: none; font-size: .9rem; font-weight: 600; }
-    .nav-links a:hover { color: var(--red); }
-    .nav-links .nav-call { color: var(--red); }
-
-    .hero { overflow: hidden; position: relative; padding: clamp(4.5rem, 10vw, 8rem) 0 clamp(5rem, 9vw, 7.5rem); background: var(--green-deep); color: var(--white); }
-    .hero::after { position: absolute; right: -8rem; bottom: -17rem; width: 39rem; aspect-ratio: 1; border: 1px solid rgb(255 253 248 / 15%); border-radius: 50%; content: ""; box-shadow: 0 0 0 3rem rgb(255 253 248 / 3%), 0 0 0 7rem rgb(255 253 248 / 2%); pointer-events: none; }
-    .hero-inner { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(220px, .7fr); align-items: end; gap: 3rem; }
-    .eyebrow { margin: 0 0 1.3rem; color: #d4bc8c; font-size: .75rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
-    h1, h2, h3, h4, p { margin-top: 0; }
-    h1 { max-width: 780px; margin-bottom: 1.2rem; font-family: var(--serif); font-size: clamp(4rem, 11vw, 8.4rem); font-weight: 400; letter-spacing: -.075em; line-height: .9; }
-    .hero-copy { max-width: 510px; margin-bottom: 2rem; color: #e0e5dd; font-family: var(--serif); font-size: clamp(1.2rem, 2.4vw, 1.6rem); line-height: 1.45; }
-    .hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; }
-    .button { display: inline-flex; min-height: 48px; align-items: center; justify-content: center; padding: .7rem 1.2rem; border: 1px solid transparent; border-radius: 3px; background: var(--red); color: #fff; font-size: .88rem; font-weight: 700; text-decoration: none; transition: background .18s ease, transform .18s ease; }
-    .button:hover { transform: translateY(-2px); background: #973824; }
-    .button-light { border-color: rgb(255 255 255 / 48%); background: transparent; }
-    .button-light:hover { background: rgb(255 255 255 / 10%); }
-    .hero-aside { padding: 1.3rem 0 0 1.5rem; border-left: 1px solid rgb(255 255 255 / 32%); color: #e0e5dd; font-size: .9rem; }
-    .hero-aside strong { display: block; margin-bottom: .25rem; color: #fff; font-family: var(--serif); font-size: 1.35rem; font-weight: 400; }
-
-    .intro { display: grid; grid-template-columns: .8fr 1.2fr; gap: 4rem; padding-block: clamp(4rem, 8vw, 7rem); border-bottom: 1px solid var(--line); }
-    .section-label { margin: .4rem 0 0; color: var(--red); font-size: .72rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
-    h2 { margin-bottom: 1rem; color: var(--green-deep); font-family: var(--serif); font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 400; letter-spacing: -.055em; line-height: 1.05; }
-    .intro-copy { max-width: 620px; margin: 0; color: var(--muted); font-family: var(--serif); font-size: 1.2rem; }
-
-    .menu-section { padding-block: clamp(4rem, 8vw, 7rem); border-bottom: 1px solid var(--line); }
-    .menu-heading { display: flex; align-items: end; justify-content: space-between; gap: 2rem; margin-bottom: 3.2rem; }
-    .menu-heading h2 { margin-bottom: .7rem; }
-    .menu-heading p { max-width: 400px; margin: 0 0 .4rem; color: var(--muted); font-size: .88rem; }
-    .menu-category { margin: 2.8rem 0 1rem; padding-bottom: .65rem; border-bottom: 1px solid var(--line); color: var(--red); font-family: var(--serif); font-size: 1.65rem; font-weight: 400; }
-    .menu-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 3rem; }
-    .dish { padding: 1.15rem 0 1.25rem; border-bottom: 1px solid var(--line); }
-    .dish-top { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; }
-    .dish h4 { margin: 0; color: var(--ink); font-family: var(--serif); font-size: 1.22rem; font-weight: 600; line-height: 1.3; }
-    .price { flex: 0 0 auto; color: var(--green); font-size: .92rem; font-weight: 700; font-variant-numeric: tabular-nums; }
-    .dish p { margin: .5rem 0 0; color: var(--muted); font-size: .88rem; line-height: 1.55; }
-    .dish .allergens { margin-top: .38rem; color: #756e61; font-size: .76rem; }
-    .menu-note { margin: 2rem 0 0; padding: 1rem 1.2rem; border-left: 3px solid var(--red); background: var(--paper-deep); color: #514b41; font-size: .86rem; }
-
-    .gallery-section { padding-block: clamp(4rem, 8vw, 7rem); border-bottom: 1px solid var(--line); }
-    .gallery-heading { display: flex; align-items: end; justify-content: space-between; gap: 2rem; margin-bottom: 2rem; }
-    .gallery-heading h2 { margin-bottom: .7rem; }
-    .gallery-heading p { max-width: 390px; margin: 0 0 .4rem; color: var(--muted); font-size: .88rem; }
-    .gallery-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
-    .gallery-card { overflow: hidden; aspect-ratio: 4 / 5; margin: 0; background: var(--paper-deep); }
-    .gallery-card img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .3s ease; }
-    .gallery-card:hover img { transform: scale(1.04); }
-
-    .visit { padding-block: clamp(4rem, 8vw, 7rem); background: var(--paper-deep); }
-    .visit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
-    .visit-intro { max-width: 440px; color: var(--muted); }
-    .contact-list { margin: 0; }
-    .contact-row { display: grid; grid-template-columns: 125px 1fr; gap: 1rem; padding: .85rem 0; border-bottom: 1px solid #d0c7b7; }
-    .contact-row dt { color: var(--muted); font-size: .84rem; }
-    .contact-row dd { margin: 0; font-weight: 600; }
-    .contact-row a { text-decoration-thickness: 1px; text-underline-offset: 3px; }
-    .visit-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.5rem; }
-    .visit .button { background: var(--green); }
-    .visit .button:hover { background: var(--green-deep); }
-    .visit .button-outline { border-color: var(--green); background: transparent; color: var(--green); }
-    .visit .button-outline:hover { background: rgb(41 75 60 / 8%); }
-    .hours-note { margin: 1rem 0 0; color: var(--muted); font-size: .82rem; }
-
-    .closing { padding-block: 4rem; background: var(--green-deep); color: var(--white); text-align: center; }
-    .closing p { margin: 0; color: #e0e5dd; font-family: var(--serif); font-size: clamp(1.7rem, 4vw, 2.5rem); }
-    .site-footer { padding: 1.3rem 0; background: #122b21; color: #c9d2cb; font-size: .78rem; }
-    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
-
-    @media (max-width: 720px) {
-      .wrap { width: min(100% - 36px, 560px); }
-      .nav { min-height: 64px; align-items: flex-start; flex-direction: column; justify-content: center; gap: .2rem; padding-block: .65rem; }
-      .wordmark { font-size: 1.45rem; line-height: 1.2; }
-      .nav-links { width: 100%; justify-content: space-between; gap: .7rem; }
-      .nav-links a { font-size: .78rem; }
-      .hero { padding-block: 4.5rem; }
-      .hero-inner, .intro, .visit-grid { grid-template-columns: 1fr; gap: 2rem; }
-      .hero-aside { max-width: 330px; padding: 0 0 0 1rem; }
-      .intro { gap: 1rem; }
-      .section-label { margin: 0; }
-      .menu-heading { align-items: flex-start; flex-direction: column; gap: .5rem; margin-bottom: 2rem; }
-      .menu-grid { grid-template-columns: 1fr; }
-      .menu-category { margin-top: 2.2rem; }
-      .gallery-heading { align-items: flex-start; flex-direction: column; gap: .5rem; }
-      .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .contact-row { grid-template-columns: 100px 1fr; }
-      .footer-inner { align-items: flex-start; flex-direction: column; gap: .25rem; }
-    }
-    @media (max-width: 380px) {
-      .nav-links { gap: .4rem; }
-      .nav-links a { font-size: .72rem; }
-      .gallery-grid { gap: 8px; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
-      .gallery-card img { transition: none; }
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rongahuset – kafé, pub og rom i Evanger</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;800&family=Newsreader:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#e8eeec;--surface:#f6f9f8;--ink:#1c2829;--muted:#4c5f60;--river:#2b6a85;--berry:#8a2d4a;--line:#b9c8c6;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121b1c;--surface:#1b2829;--ink:#e6efed;--muted:#a3b7b6;--river:#7fc0dc;--berry:#e58aa6;--line:#2f4243;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#121b1c;--surface:#1b2829;--ink:#e6efed;--muted:#a3b7b6;--river:#7fc0dc;--berry:#e58aa6;--line:#2f4243;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.125rem/1.65 Newsreader,Georgia,serif}
+a{color:var(--river)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--berry);outline-offset:3px}
+.wrap{max-width:62rem;margin:0 auto;padding:0 1.25rem}
+h1,h2,h3,.sans{font-family:"Bricolage Grotesque",system-ui,sans-serif}
+nav{display:flex;flex-wrap:wrap;gap:.25rem 1.4rem;padding:1rem 0;font:500 .95rem "Bricolage Grotesque",system-ui,sans-serif}
+nav a{color:var(--ink);text-decoration:none;padding:.25rem 0;border-bottom:2px solid transparent}
+nav a:hover{border-color:var(--river)}
+.hero{padding:3rem 0 2.5rem}
+.hero h1{font-weight:800;font-size:clamp(2.6rem,9vw,6rem);line-height:.95;letter-spacing:-.03em;margin:0 0 1.5rem;max-width:14ch}
+.hero p{max-width:34rem;font-size:1.3rem;color:var(--muted);margin:0 0 1.75rem}
+.btn{display:inline-block;font:800 1rem "Bricolage Grotesque",system-ui,sans-serif;padding:.8rem 1.4rem;border-radius:999px;background:var(--river);color:var(--bg);text-decoration:none;margin:0 .6rem .6rem 0}
+.btn.alt{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 2px var(--ink)}
+.river{display:block;width:100%;height:56px;margin:1rem 0 0}
+section{padding:3rem 0;border-top:1px solid var(--line)}
+h2{font-weight:800;font-size:clamp(1.8rem,5vw,2.8rem);letter-spacing:-.02em;line-height:1.05;margin:0 0 1rem}
+h3{font-size:1.2rem;margin:0 0 .3rem}
+.cols{display:grid;gap:2.5rem;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr))}
+p{margin:0 0 1rem;max-width:40rem}
+.event{background:var(--berry);color:#fff;border-radius:1.25rem;padding:1.75rem;display:grid;gap:.4rem;margin:0 0 .5rem}
+.event h2{margin:0;color:#fff}
+.event a{color:#fff;font-weight:600}
+.event .when{font:800 1.1rem "Bricolage Grotesque",system-ui,sans-serif}
+dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:.5rem 1.25rem}
+dt{font:800 1rem "Bricolage Grotesque",system-ui,sans-serif}
+dd{margin:0}
+.box{background:var(--surface);border-radius:1rem;padding:1.5rem}
+.gallery{columns:16rem;column-gap:1rem}
+.gallery figure{margin:0 0 1rem;break-inside:avoid}
+.gallery img{display:block;width:100%;height:auto;border-radius:.75rem}
+.gallery figcaption{font:500 .9rem "Bricolage Grotesque",system-ui,sans-serif;color:var(--muted);padding:.4rem .2rem 0}
+.image-placeholder{display:grid;min-height:6rem;place-items:center;border:1px solid var(--line);border-radius:.75rem;color:var(--muted);font:500 .9rem "Bricolage Grotesque",system-ui,sans-serif}
+footer{padding:2rem 0 3rem;border-top:1px solid var(--line);color:var(--muted);font-size:.95rem}
+@media (max-width:30rem){dl{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
-  <a class="skip-link" href="#main">Hopp til innhold</a>
-  <div class="concept-banner">UOFFISIELT KONSEPT · Ikke en offisiell nettside · Opplysninger må bekreftes av Itachino</div>
+<div class="wrap">
+<nav aria-label="Hovedmeny">
+<a href="#cafe">Kafé</a><a href="#pub">Pub</a><a href="#rom">Rom</a><a href="#arrangement">Arrangement</a><a href="#bilder">Bilder</a><a href="#finn-oss">Finn oss</a>
+</nav>
 
-  <header class="site-header">
-    <nav class="nav wrap" aria-label="Hovedmeny">
-      <a class="wordmark" href="#top" aria-label="Itachino — til toppen">Itachino</a>
-      <div class="nav-links">
-        <a href="#om">Om</a>
-        <a href="#meny">Meny</a>
-        <a href="#bilder">Bilder</a>
-        <a href="#besok">Finn oss</a>
-        <a class="nav-call" href="tel:+4792920528">Ring 92 92 05 28</a>
-      </div>
-    </nav>
-  </header>
+<header class="hero">
+<h1>Kaffe, kunst og kveld ved elven i Evanger</h1>
+<p>Rongahuset er kafé, pub og overnatting midt i Evanger, rett ved brua og togstoppet mellom Voss og Bergen.</p>
+<a class="btn" href="https://checkout.lodgify.com/en/bridget-penny/190440/reservation?currency=NOK">Book rom</a>
+<a class="btn alt" href="#finn-oss">Åpningstider og adresse</a>
+<svg class="river" viewBox="0 0 800 56" preserveAspectRatio="none" aria-hidden="true"><path d="M0 28 C100 4 200 52 300 28 S500 4 600 28 S740 48 800 24" fill="none" stroke="var(--river)" stroke-width="4" stroke-linecap="round"/><path d="M0 44 C120 24 220 56 340 40 S560 24 680 42 S760 50 800 40" fill="none" stroke="var(--river)" stroke-width="2" opacity=".5" stroke-linecap="round"/></svg>
+</header>
 
-  <main id="main">
-    <section class="hero" id="top" aria-labelledby="hero-title">
-      <div class="hero-inner wrap">
-        <div>
-          <p class="eyebrow">Vangsgata · Vossevangen</p>
-          <h1 id="hero-title">Itachino</h1>
-          <p class="hero-copy">Pasta, pizza og middagsretter i Vossevangen.</p>
-          <div class="hero-actions">
-            <a class="button" href="#meny">Utforsk menyen</a>
-            <a class="button button-light" href="tel:+4792920528">Ring restauranten</a>
-          </div>
-        </div>
-        <aside class="hero-aside">
-          <strong>Et nettsidekonsept</strong>
-          Designutkast laget for presentasjon. Innhold og bedriftsopplysninger er ikke bekreftet av restauranten.
-        </aside>
-      </div>
-    </section>
+<section id="arrangement" aria-labelledby="h-arr" style="border-top:0;padding-top:1rem">
+<div class="event">
+<span class="when">Fredag 13. november kl. 20.00</span>
+<h2 id="h-arr">Fjord Noir på Rongahuset</h2>
+<a href="https://rongahuset.hoopla.no/event/824119173">Les mer og få billett</a>
+</div>
+<p style="color:var(--muted)">Vi arrangerer også andre kvelder i løpet av året.</p>
+</section>
 
-    <section class="intro wrap" id="om" aria-labelledby="about-title">
-      <p class="section-label">Itachino · Vossevangen</p>
-      <div>
-        <h2 id="about-title">Noe godt å samles om.</h2>
-        <p class="intro-copy">Et forslag til en enkel inngang til Itachinos meny, adresse og kontaktinformasjon. Denne siden er et uoffisielt konsept, ikke en offisiell kanal.</p>
-      </div>
-    </section>
+<section id="cafe" aria-labelledby="h-cafe">
+<div class="cols">
+<div>
+<h2 id="h-cafe">Kafé</h2>
+<p>Hjemmelaget mat og kaker, og god kaffe. Kaffen er lokalt brent og nymalt, og det meste av maten lager vi selv av økologiske, lokale og sesongbaserte råvarer så langt det lar seg gjøre. Det er alltid vegetarvalg på menyen.</p>
+<p>Prøv økologisk fruktjuice fra <a href="http://safteriet.no/">Safteriet</a> eller hjemmelaget gårdsis fra <a href="https://www.almgard.com/en/ijsproduktie/">Alm Gard</a>.</p>
+</div>
+<div class="box">
+<h3>Når er kafeen åpen?</h3>
+<dl>
+<dt>Søndager</dt><dd>Fra påske til advent</dd>
+<dt>Sommeren</dt><dd>Som regel lørdag og søndag</dd>
+<dt>Vinteren</dt><dd>Stort sett stengt mellom jul og påske</dd>
+</dl>
+<p style="margin-top:1rem;font-size:1rem">Ekstra åpningsdager står på <a href="https://share.google/AnRL6JDxzEuBRYh0c">Google</a>.</p>
+</div>
+</div>
+</section>
 
-    <section class="menu-section wrap" id="meny" aria-labelledby="menu-title">
-      <div class="menu-heading">
-        <div>
-          <p class="section-label">Et utvalg fra menyen</p>
-          <h2 id="menu-title">Meny</h2>
-        </div>
-        <p>Retter, priser og allergenopplysninger er gjengitt fra det innsendte utgangspunktet og må bekreftes før eventuell publisering.</p>
-      </div>
+<section id="pub" aria-labelledby="h-pub">
+<div class="cols">
+<div>
+<h2 id="h-pub">Pub</h2>
+<p>Pubben har åpent de fleste lørdagskvelder gjennom hele året, med mindre det er for kaldt.</p>
+</div>
+<div>
+<h3>Bøker, kunst og møbler</h3>
+<p>I kafeen og i huset selger vi kunst, antikviteter, møbler og bruktbøker, også bordene og stolene i kafeen. Se i bokhyllene, særlig den i kafeen, eller spør oss. Bøker ligger også på <a href="https://bookis.com/no/community/user/491945/profile">Bookis</a>.</p>
+</div>
+</div>
+</section>
 
-      <h3 class="menu-category">Forretter og salat</h3>
-      <div class="menu-grid">
-        <article class="dish">
-          <div class="dish-top"><h4>Sopaipillas</h4><span class="price">99,-</span></div>
-          <p>To frityrstekte chilenske gresskarbrød, servert med pebre.</p>
-          <p class="allergens">Allergener: gluten, melk</p>
-        </article>
-        <article class="dish">
-          <div class="dish-top"><h4>Caesarsalat</h4><span class="price">289,-</span></div>
-          <p>Serveres med kylling eller røkt laks / vegansk kylling, bacon, parmesan, romanosalat, krutonger og cæsardressing.</p>
-          <p class="allergens">Allergener: gluten, melk, egg, sulfitter (fisk)</p>
-        </article>
-      </div>
+<section id="rom" aria-labelledby="h-rom">
+<h2 id="h-rom">Overnatt i Rongahuset</h2>
+<p>Gjesterom i huset, noen få skritt fra elven og togstasjonen. Se rommene, priser og ledige datoer hos oss.</p>
+<a class="btn" href="https://checkout.lodgify.com/en/bridget-penny/190440/reservation?currency=NOK">Sjekk ledighet og book</a>
+<a class="btn alt" href="https://rongahuset.no/en/2409397/rooms">Se rommene</a>
+<a class="btn alt" href="https://rongahuset.no/en/826188/rates">Priser</a>
+<a class="btn alt" href="https://rongahuset.no/en/826185/good-to-know">Greit å vite</a>
+</section>
 
-      <h3 class="menu-category">Pizza</h3>
-      <div class="menu-grid">
-        <article class="dish">
-          <div class="dish-top"><h4>Pizza med serrano</h4><span class="price">299,-</span></div>
-          <p>Tomatsaus, mozzarella og serrano, toppet med ruccola.</p>
-          <p class="allergens">Allergener: gluten, melk</p>
-        </article>
-        <article class="dish">
-          <div class="dish-top"><h4>Vegetarpizza</h4><span class="price">249,-</span></div>
-          <p>Tomatsaus, mozzarella, paprika, løk, cherrytomater og ruccola.</p>
-          <p class="allergens">Allergener: gluten, melk</p>
-        </article>
-      </div>
+<section id="mer" aria-labelledby="h-mer">
+<h2 id="h-mer">Mer fra Rongahuset</h2>
+<p><a href="https://rongahuset.no/en/5214075/volunteering-at-rongahuset">Bli frivillig hos oss</a> · <a href="https://rongahuset.no/en/1427158/evanger">Om Evanger</a> · <a href="https://rongahuset.no/en/2250767/mymap">Kart over severdigheter</a> · <a href="https://thespacesbetween.art/">Bloggen</a></p>
+</section>
 
-      <h3 class="menu-category">Pasta</h3>
-      <div class="menu-grid">
-        <article class="dish">
-          <div class="dish-top"><h4>Tagliatelle carbonara</h4><span class="price">299,-</span></div>
-          <p>Pasta med guanciale, pecorino og parmesan. Serveres med focaccia.</p>
-          <p class="allergens">Allergener: gluten, melk, egg</p>
-        </article>
-        <article class="dish">
-          <div class="dish-top"><h4>Spaghetti bolognese</h4><span class="price">279,-</span></div>
-          <p>Pasta med tomatsaus, basilikum, gulrot, parmesan og kjøttdeig. Serveres med focaccia.</p>
-          <p class="allergens">Allergener: gluten, melk</p>
-        </article>
-        <article class="dish">
-          <div class="dish-top"><h4>Cannelloni</h4><span class="price">295,-</span></div>
-          <p>Cannelloni med spinat, ricotta, béchamel- og tomatsaus. Serveres med focaccia og grønn salat.</p>
-          <p class="allergens">Allergener: gluten, melk, egg</p>
-        </article>
-        <article class="dish">
-          <div class="dish-top"><h4>Kremet pasta med scampi</h4><span class="price">339,-</span></div>
-          <p>Pasta med kremet saus av squash, chili, hvitløk og hvitvin, med scampi og parmesan.</p>
-          <p class="allergens">Allergener: gluten, melk, skalldyr</p>
-        </article>
-        <article class="dish">
-          <div class="dish-top"><h4>Vegetartagliatelle</h4><span class="price">289,-</span></div>
-          <p>Tagliatelle med paprika, løk, sjampinjong og tomatsaus. Serveres med focaccia og grønn salat.</p>
-          <p class="allergens">Allergener: gluten, melk, egg</p>
-        </article>
-        <article class="dish">
-          <div class="dish-top"><h4>Klassisk lasagne</h4><span class="price">319,-</span></div>
-          <p>Lasagneplater med béchamel og tomatsaus med kjøttdeig. Serveres med grønn salat.</p>
-          <p class="allergens">Allergener: gluten, melk</p>
-        </article>
-      </div>
+<section id="bilder" aria-labelledby="h-bilder">
+<h2 id="h-bilder">Bilder</h2>
+<div class="gallery">
+<figure><img src="bilder/bokhylle.jpg" alt="Bokhyller i alle regnbuens farger med sofa, piano og gitar" loading="lazy"><figcaption>Biblioteket i kafeen</figcaption></figure>
+<figure><img src="bilder/gjest.jpg" alt="Gjest med bagett ved kafédisken" loading="lazy"><figcaption>Lunsj i kafeen</figcaption></figure>
+<figure><img src="bilder/konsert.jpg" alt="Musiker med gitar under en fest i kafeen" loading="lazy"><figcaption>Konsert og fest</figcaption></figure>
+<figure><img src="bilder/kaffe.jpg" alt="Kaffebønner med kafélokalet i bakgrunnen" loading="lazy"><figcaption>Nybrent kaffe</figcaption></figure>
+<figure><img src="bilder/brod.jpg" alt="Nybakte brød på rist" loading="lazy"><figcaption>Hjemmebakt brød</figcaption></figure>
+<figure><img src="bilder/borek.jpg" alt="Børek med svart sesam" loading="lazy"><figcaption>Børek</figcaption></figure>
+<figure><img src="bilder/snurrer.jpg" alt="Ostesnurrer rett fra ovnen" loading="lazy"><figcaption>Ostesnurrer</figcaption></figure>
+<figure><img src="bilder/wrap.jpg" alt="Grillet wrap med salat og pommes frites" loading="lazy"><figcaption>Wrap med salat</figcaption></figure>
+</div>
+</section>
 
-      <h3 class="menu-category">Hovedretter</h3>
-      <div class="menu-grid">
-        <article class="dish">
-          <div class="dish-top"><h4>Mountain Trout</h4><span class="price">449,-</span></div>
-          <p>Stekt fjelltorsk* med agurksalat, brokkolini, urtebakte amandinepoteter, rømme og sitron. *Kan byttes med laks hvis tilgjengelig.</p>
-          <p class="allergens">Allergener: melk, sulfitter, fisk</p>
-        </article>
-        <article class="dish">
-          <div class="dish-top"><h4>Entrecôte</h4><span class="price">449,-</span></div>
-          <p>Entrecôte (200 g) med gulrotpuré, ovnsbakte cherrytomater, urtebakte amandinepoteter og béarnaisesaus.</p>
-          <p class="allergens">Allergener: gluten, melk</p>
-        </article>
-        <article class="dish">
-          <div class="dish-top"><h4>Oxe Stew</h4><span class="price">319,-</span></div>
-          <p>Kremet oksegryte med gulrot. Serveres med potetmos og tyttebær.</p>
-          <p class="allergens">Allergener: melk</p>
-        </article>
-        <article class="dish">
-          <div class="dish-top"><h4>Signaturburger</h4><span class="price">329,-</span></div>
-          <p>Burger av oksefilet (200 g) med bacon, cheddar, salat, sylteagurk, tomat, karamellisert løk, tomatmajones og pommes frites.</p>
-          <p class="allergens">Allergener: gluten, melk, egg, sulfitter</p>
-        </article>
-        <article class="dish">
-          <div class="dish-top"><h4>Cazuela</h4><span class="price">349,-</span></div>
-          <p>Langtidskokt chilensk gryte med oksehale eller kylling (avhengig av tilgjengelighet), kraft, potet, gresskar og maiskolbe. Serveres med løk- og tomatsalat.</p>
-        </article>
-        <article class="dish">
-          <div class="dish-top"><h4>Strimler av storfekjøtt</h4><span class="price">319,-</span></div>
-          <p>Storfekjøtt med stekt sopp, løk og paprika. Serveres med béarnaisesaus og pommes frites.</p>
-          <p class="allergens">Allergener: melk, gluten, egg</p>
-        </article>
-      </div>
-      <p class="menu-note">Priser i norske kroner. Meny, priser og allergener må bekreftes av restauranten. Spør betjeningen om allergener og mulig krysskontaminering.</p>
-    </section>
+<section id="finn-oss" aria-labelledby="h-finn">
+<h2 id="h-finn">Finn oss</h2>
+<div class="cols">
+<div class="box">
+<dl>
+<dt>Adresse</dt><dd>Knute Nelson-gata 15, 5707 Evanger</dd>
+<dt>Telefon</dt><dd><a href="tel:+4793044506">93 04 45 06</a></dd>
+<dt>E-post</dt><dd><a href="mailto:visit@rongahuset.no">visit@rongahuset.no</a></dd>
+</dl>
+</div>
+<div>
+<p>Evanger ligger på Vossebanen mellom Voss og Bergen. Huset ligger ved elven og brua, ved stoppestedet.</p>
+<a class="btn alt" href="https://rongahuset.no/en/826186/map">Kart og veibeskrivelse</a>
+</div>
+</div>
+</section>
 
-    <section class="gallery-section wrap" id="bilder" aria-labelledby="gallery-title">
-      <div class="gallery-heading">
-        <div>
-          <p class="section-label">Et inntrykk av stedet</p>
-          <h2 id="gallery-title">Fra Itachino</h2>
-        </div>
-        <p>Bilder levert for dette konseptutkastet. Bruk og publisering må godkjennes av restauranten.</p>
-      </div>
-      <div class="gallery-grid">
-        <figure class="gallery-card"><img src="assets/gallery-01.png" alt="Gratinert pastarett servert med salat" loading="lazy" decoding="async"></figure>
-        <figure class="gallery-card"><img src="assets/gallery-02.png" alt="Kremet pastarett med brød" loading="lazy" decoding="async"></figure>
-        <figure class="gallery-card"><img src="assets/gallery-03.png" alt="Stekt fisk med sitron og poteter" loading="lazy" decoding="async"></figure>
-        <figure class="gallery-card"><img src="assets/gallery-04.png" alt="Kremet pasta med scampi og brød" loading="lazy" decoding="async"></figure>
-        <figure class="gallery-card"><img src="assets/gallery-05.png" alt="Kremet pasta med revet ost og brød" loading="lazy" decoding="async"></figure>
-        <figure class="gallery-card"><img src="assets/gallery-06.png" alt="Tagliatelle med tomatsaus og brød" loading="lazy" decoding="async"></figure>
-        <figure class="gallery-card"><img src="assets/gallery-07.png" alt="Tagliatelle med revet ost og stekt kjøtt" loading="lazy" decoding="async"></figure>
-        <figure class="gallery-card"><img src="assets/gallery-08.png" alt="Gylne bakverk servert med dip" loading="lazy" decoding="async"></figure>
-        <figure class="gallery-card"><img src="assets/gallery-09.png" alt="Rundt, gyllent brød med urtedip" loading="lazy" decoding="async"></figure>
-        <figure class="gallery-card"><img src="assets/gallery-10.png" alt="Spaghetti med kjøttsaus" loading="lazy" decoding="async"></figure>
-        <figure class="gallery-card"><img src="assets/gallery-11.png" alt="Kremet pasta med lime, revet ost og knekkebrød" loading="lazy" decoding="async"></figure>
-        <figure class="gallery-card"><img src="assets/restaurant-interior.png" alt="Spiseområdet sett mot vinduene mot gaten" loading="lazy" decoding="async"></figure>
-        <figure class="gallery-card"><img src="assets/wrap-fries-plate.png" alt="Tallerken med pommes frites, wraps, salat og dip" loading="lazy" decoding="async"></figure>
-      </div>
-    </section>
-
-    <section class="visit" id="besok" aria-labelledby="visit-title">
-      <div class="visit-grid wrap">
-        <div>
-          <p class="section-label">Besøk oss</p>
-          <h2 id="visit-title">Finn veien til Itachino.</h2>
-          <p class="visit-intro">Adresse og kontaktopplysninger nedenfor kommer fra det innsendte utgangspunktet og må bekreftes før eventuell publisering.</p>
-          <div class="visit-actions">
-            <a class="button" href="https://www.google.com/maps/search/?api=1&amp;query=Itachino+Vangsgata+12+Vossevangen">Veibeskrivelse</a>
-            <a class="button button-outline" href="tel:+4792920528">Ring 92 92 05 28</a>
-          </div>
-        </div>
-        <div>
-          <dl class="contact-list">
-            <div class="contact-row"><dt>Adresse</dt><dd>Vangsgata 12, 5700 Vossevangen</dd></div>
-            <div class="contact-row"><dt>Telefon</dt><dd><a href="tel:+4792920528">92 92 05 28</a></dd></div>
-            <div class="contact-row"><dt>Nettsted</dt><dd><a href="https://itachino.no">itachino.no</a></dd></div>
-            <div class="contact-row"><dt>Åpningstider</dt><dd>Oppgitt: fra kl. 15. Søndag til kl. 22.</dd></div>
-          </dl>
-          <p class="hours-note">Åpningstidene er ikke bekreftet. Sjekk restaurantens offisielle kanaler før besøket.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="closing" aria-label="Konseptstatus">
-      <div class="wrap">
-        <p>Et uoffisielt konsept — laget for presentasjon.</p>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="footer-inner wrap">
-      <span>Itachino · Vangsgata 12, Vossevangen</span>
-      <span>Konseptutkast — ikke tilknyttet eller godkjent av restauranten.</span>
-    </div>
-  </footer>
+<footer>© 2026 Rongahuset</footer>
+</div>
+<script>
+document.querySelectorAll(".gallery img").forEach((image) => {
+  image.addEventListener("error", () => {
+    image.hidden = true;
+    const placeholder = document.createElement("span");
+    placeholder.className = "image-placeholder";
+    placeholder.textContent = "Bilde ikke tilgjengelig";
+    image.before(placeholder);
+  }, { once: true });
+});
+</script>
 </body>
 </html>
